@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-
 import './App.css';
 import Canvas from "./Canvas";
+import { subscribeToTimer } from './api';
+
 
 class App extends Component {
 
@@ -10,11 +11,17 @@ class App extends Component {
         super(props);
 
         this.state = {
+            timestamp: 'no timestamp yet',
             pixel: {
                 x: 0,
                 y: 0
             }
         };
+
+        subscribeToTimer((err, timestamp) => this.setState({
+            timestamp
+        }));
+
     }
 
     handleClick(e) {
@@ -43,6 +50,7 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     Awesome Mandelbrot Webapp
+                    This is the timer value: {this.state.timestamp}
                 </header>
 
                 <main className="App-main">
