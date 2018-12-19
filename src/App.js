@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 import Canvas from "./Canvas";
-import {subscribeToPixel, subscribeToTimer} from './api';
+import {subscribeToPixel} from './api';
 
 
 class App extends Component {
-
 
     constructor(props) {
         super(props);
@@ -18,9 +17,7 @@ class App extends Component {
         };
 
         subscribeToPixel((err, pixel) => {
-
             console.log(`Pixel.io: ${JSON.stringify(pixel)}`);
-
             return this.setState({
                 pixel
             });
