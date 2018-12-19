@@ -9,12 +9,6 @@ function toPixel(x, y) {
 }
 
 io.on('connection', (client) => {
-    client.on('subscribeToTimer', (interval) => {
-        console.log('client is subscribing to timer with interval ', interval);
-        setInterval(() => {
-            client.emit('timer', new Date());
-        }, interval);
-    });
 
     client.on('subscribeToPixel', (pixel) => {
         console.log('client is subscribing to pixel with ', pixel);
@@ -23,9 +17,6 @@ io.on('connection', (client) => {
 
         for (let x = 0; x < maxX; x++) {
             for (let y = 0; y < maxY; y++) {
-
-                console.log(x + ' ' + y);
-
                 client.emit('pixel', toPixel(x, y));
             }
         }

@@ -11,17 +11,11 @@ class App extends Component {
         super(props);
 
         this.state = {
-            timestamp: 'no timestamp yet',
             pixel: {
                 x: 0,
                 y: 0
             }
         };
-
-        subscribeToTimer((err, timestamp) => this.setState({
-            timestamp
-        }));
-
 
         subscribeToPixel((err, pixel) => {
 
@@ -40,7 +34,6 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     Awesome Mandelbrot Webapp
-                    This is the timer value: {this.state.timestamp}
                 </header>
 
                 <main className="App-main">
