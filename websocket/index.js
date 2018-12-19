@@ -1,10 +1,13 @@
 const io = require('socket.io')();
 
 function toPixel(x, y) {
+
+    const g = Math.floor(Math.random() * 255);
+
     return {
         x: x,
         y: y,
-        color: {r: 255, g: 165, b: 0, a: 1,}
+        color: {r: 255, g, b: 0, a: 1,}
     };
 }
 
