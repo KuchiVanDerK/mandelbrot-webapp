@@ -3,16 +3,6 @@ import './Canvas.css';
 
 class Canvas extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            width: 300,
-            height: 300
-        }
-
-    }
-
     componentDidMount() {
         this.updateCanvas();
     }
@@ -20,7 +10,7 @@ class Canvas extends Component {
     updateCanvas() {
         const ctx = this.refs.canvas.getContext('2d'); // add to state?
         ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, this.state.width, this.state.height);
+        ctx.fillRect(0, 0, this.props.width, this.props.height);
     }
 
     render() {
@@ -34,12 +24,11 @@ class Canvas extends Component {
             ctx.fillRect(pixel.x, pixel.y, 1, 1);
         }
 
-
         return (
             <canvas ref="canvas"
                     className="Canvas"
-                    width={this.state.width}
-                    height={this.state.height}/>
+                    width={this.props.width}
+                    height={this.props.height}/>
         );
     }
 }

@@ -10,10 +10,9 @@ class App extends Component {
         super(props);
 
         this.state = {
-            pixel: {
-                x: 0,
-                y: 0
-            }
+            width: 100,
+            height: 100,
+            pixel: {}
         };
 
         subscribeToPixel((err, pixel) => {
@@ -21,7 +20,7 @@ class App extends Component {
             return this.setState({
                 pixel
             });
-        });
+        }, this.state.width, this.state.height);
 
     }
 
@@ -34,7 +33,9 @@ class App extends Component {
                 </header>
 
                 <main className="App-main">
-                    <Canvas pixel={this.state.pixel}/>
+                    <Canvas pixel={this.state.pixel}
+                            width={this.state.width}
+                            height={this.state.height}/>
                 </main>
 
             </div>
