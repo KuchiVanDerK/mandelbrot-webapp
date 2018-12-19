@@ -7,4 +7,9 @@ function subscribeToTimer(cb) {
     socket.emit('subscribeToTimer', 1000);
 }
 
-export {subscribeToTimer};
+function subscribeToPixel(cb) {
+    socket.on('pixel', pixel => cb(null, pixel));
+    socket.emit('subscribeToPixel', {maxX: 300, maxY: 300});
+}
+
+export {subscribeToTimer, subscribeToPixel};

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Canvas from "./Canvas";
-import { subscribeToTimer } from './api';
+import {subscribeToPixel, subscribeToTimer} from './api';
 
 
 class App extends Component {
@@ -22,27 +22,37 @@ class App extends Component {
             timestamp
         }));
 
-    }
 
-    handleClick(e) {
-        e.preventDefault();
+        subscribeToPixel((err, pixel) => {
 
+            console.log(`Pixel.io: ${JSON.stringify(pixel)}`);
 
-        const x = this.state.pixel.x;
-        // const y = this.state.y;
-
-        const newX = x+1;
-
-        this.setState({
-                pixel: {
-                    x: newX,
-                    y: 100,
-                    color: {r: 255, g: 165, b: 0, a: 1,}
-                }
-            }
-        )
+            return this.setState({
+                pixel
+            });
+        });
 
     }
+
+    // handleClick(e) {
+    //     e.preventDefault();
+    //
+    //
+    //     const x = this.state.pixel.x;
+    //     // const y = this.state.y;
+    //
+    //     const newX = x + 1;
+    //
+    //     this.setState({
+    //             pixel: {
+    //                 x: newX,
+    //                 y: 100,
+    //                 color: {r: 255, g: 165, b: 0, a: 1,}
+    //             }
+    //         }
+    //     )
+    //
+    // }
 
 
     render() {
@@ -55,9 +65,9 @@ class App extends Component {
 
                 <main className="App-main">
 
-                    <button onClick={this.handleClick.bind(this)}>
-                        Activate Lasers
-                    </button>
+                    {/*<button onClick={this.handleClick.bind(this)}>*/}
+                        {/*Activate Lasers*/}
+                    {/*</button>*/}
 
                     <Canvas pixel={this.state.pixel}/>
                 </main>
