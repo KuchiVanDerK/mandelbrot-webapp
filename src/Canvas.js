@@ -18,7 +18,7 @@ class Canvas extends Component {
     }
 
     updateCanvas() {
-        const ctx = this.refs.canvas.getContext('2d');
+        const ctx = this.refs.canvas.getContext('2d'); // add to state?
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, this.state.width, this.state.height);
 
@@ -27,8 +27,21 @@ class Canvas extends Component {
 
     }
 
-
     render() {
+
+        const pixel = this.props.pixel;
+
+        if (pixel && pixel.color) {
+            const {r, g, b, a} = pixel.color;
+
+            console.log(`pixel: ${JSON.stringify(pixel)}`);
+
+            const ctx = this.refs.canvas.getContext('2d');
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+            ctx.fillRect(pixel.x, pixel.y, 1, 1);
+        }
+
+
         return (
             <canvas ref="canvas"
                     className="Canvas"
