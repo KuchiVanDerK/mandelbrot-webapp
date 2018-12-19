@@ -34,26 +34,6 @@ class App extends Component {
 
     }
 
-    // handleClick(e) {
-    //     e.preventDefault();
-    //
-    //
-    //     const x = this.state.pixel.x;
-    //     // const y = this.state.y;
-    //
-    //     const newX = x + 1;
-    //
-    //     this.setState({
-    //             pixel: {
-    //                 x: newX,
-    //                 y: 100,
-    //                 color: {r: 255, g: 165, b: 0, a: 1,}
-    //             }
-    //         }
-    //     )
-    //
-    // }
-
 
     render() {
         return (
@@ -64,11 +44,6 @@ class App extends Component {
                 </header>
 
                 <main className="App-main">
-
-                    {/*<button onClick={this.handleClick.bind(this)}>*/}
-                        {/*Activate Lasers*/}
-                    {/*</button>*/}
-
                     <Canvas pixel={this.state.pixel}/>
                 </main>
 
