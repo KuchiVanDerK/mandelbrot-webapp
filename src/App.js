@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Canvas from "./Canvas";
 import {subscribeToPixel} from './api';
+import Progress from "./Progress";
 
 
 class App extends Component {
@@ -12,13 +13,15 @@ class App extends Component {
         this.state = {
             width: 100,
             height: 100,
-            pixel: {}
+            pixel: {},
+            pixelCount: 0
         };
 
         subscribeToPixel((err, pixel) => {
             console.log(`Pixel.io: ${JSON.stringify(pixel)}`);
             return this.setState({
-                pixel
+                pixel,
+                pixelCount: this.state.pixelCount + 1
             });
         }, this.state.width, this.state.height);
 
@@ -32,7 +35,10 @@ class App extends Component {
                     Awesome Mandelbrot Webapp
                 </header>
 
-                <main className="App-main">
+                <Progress current={this.state.pixelCount}
+                          max={this.state.width * this.state.height}/>
+
+                < main className="App-main">
                     <Canvas pixel={this.state.pixel}
                             width={this.state.width}
                             height={this.state.height}/>
