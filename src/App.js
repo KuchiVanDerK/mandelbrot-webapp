@@ -83,9 +83,11 @@ class App extends Component {
                     <button onClick={this.handleClick} disabled={disableButton}>
                         {buttonText}
                     </button>
-
+                    <br/>
+                    {inProgress &&
                     <Progress current={this.state.pixelCount}
                               max={this.state.width * this.state.height}/>
+                    }
 
                     <Canvas pixel={this.state.pixel}
                             width={this.state.width}
