@@ -13,20 +13,25 @@ function toPixel(x, y) {
 
 io.on('connection', (client) => {
 
-    client.on('subscribeToPixel', (pixel) => {
+    client.on('subscribeToPixel', async (pixel) => {
         console.log('client is subscribing to pixel with ', pixel);
 
         const {maxX, maxY} = pixel;
 
         for (let x = 0; x < maxX; x++) {
             for (let y = 0; y < maxY; y++) {
-                client.emit('pixel', toPixel(x, y));
+                const coloredPixel = toPixel(x, y);
+                await Promise.all([client.emit('pixel', coloredPixel), timeout(2)]);
             }
         }
 
     });
 
 });
+
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 const port = 3030;
 io.listen(port);
