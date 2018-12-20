@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 import Canvas from "./Canvas";
-import {subscribeToClient, subscribeToPixel} from './api';
+import {subscribeToClient} from './api';
 import Progress from "./Progress";
 import Clients from "./Clients";
-import PictureSizeInput from "./PictureSizeInput";
+import PictureSize from "./PictureSize";
 
 
 class App extends Component {
@@ -57,16 +57,9 @@ class App extends Component {
 
                     <Clients clients={this.state.clients}/>
 
-                    <div className="text-center container-fluid">
-                        <PictureSizeInput
-                            scale="width"
-                            value={this.state.width}
-                            onChange={this.handleWidthChange} />
-                        <PictureSizeInput
-                            scale="height"
-                            value={this.state.height}
-                            onChange={this.handleHeightChange} />
-                    </div>
+                    <PictureSize width={this.state.width} onWidthChange={this.handleWidthChange}
+                                 height={this.state.height}
+                                 onHeightChange={this.handleHeightChange}/>
 
                     <Progress current={this.state.pixelCount}
                               max={this.state.width * this.state.height}/>
