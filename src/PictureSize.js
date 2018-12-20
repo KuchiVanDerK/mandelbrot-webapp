@@ -4,6 +4,7 @@ import PictureSizeInput from "./PictureSizeInput";
 class PictureSize extends Component {
     render() {
         return <div className="text-center container-fluid">
+            Enter Picture Size in pixel:
             <PictureSizeInput
                 scale="width"
                 value={this.props.width}

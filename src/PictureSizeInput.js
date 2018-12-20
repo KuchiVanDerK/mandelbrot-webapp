@@ -17,9 +17,9 @@ class PictureSizeInput extends React.Component {
             <div className="container">
                 <form>
                     <div className= "form-group">
-                        <lable>Enter {scale}: </lable>
                         <input className="form-control container text-center" id="focusedInputed" type="text" value={value}
                                onChange={this.handleChange} />
+                        <lable> {scale}</lable>
                     </div>
                 </form>
             </div>
