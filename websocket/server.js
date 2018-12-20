@@ -19,13 +19,13 @@ io.on('connection', (client) => {
         console.log('subscribeToClient');
 
         const c64 = {name: 'C 64', cores: 4, timestamp: new Date().toISOString()};
-        await Promise.all([client.emit('client', c64), timeout(2000)]);
+        await Promise.all([client.emit('client', c64), timeout(8000)]);
 
         const casio = {name: 'Casio FX-3650PII', cores: 1, timestamp: new Date().toISOString()};
-        await Promise.all([client.emit('client', casio), timeout(3000)]);
+        await Promise.all([client.emit('client', casio), timeout(6000)]);
 
         const summit = {name: 'IBM Summit', cores: 2397824, timestamp: new Date().toISOString()};
-        await Promise.all([client.emit('client', summit), timeout(1000)]);
+        await Promise.all([client.emit('client', summit), timeout(3000)]);
 
     });
 
@@ -38,7 +38,7 @@ io.on('connection', (client) => {
         for (let x = 0; x < maxX; x++) {
             for (let y = 0; y < maxY; y++) {
                 const coloredPixel = toPixel(x, y);
-                await Promise.all([client.emit('pixel', coloredPixel), timeout(5)]);
+                await Promise.all([client.emit('pixel', coloredPixel), timeout(8)]);
             }
         }
 
