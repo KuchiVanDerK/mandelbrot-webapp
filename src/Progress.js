@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Progress.css';
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 class Progress extends Component {
 
@@ -10,29 +11,19 @@ class Progress extends Component {
 
         const percentage = (current / max * 100).toFixed(1);
 
+        const normalised = current * 100 / max;
+
+
         return (
             <div className="Progress">
                 <ul>
                     <li>{current} / {max} Pixel calculated</li>
                     <li>{percentage}% calculated</li>
                 </ul>
-                <ProgressBar percentage={percentage} />
+                <LinearProgress variant="determinate" value={normalised}/>
             </div>
         );
     }
 }
 
 export default Progress;
-
-
-const ProgressBar = (props) => {
-    return (
-        <div className="progress-bar">
-            <Filler percentage={props.percentage} />
-        </div>
-    )
-};
-
-const Filler = (props) => {
-    return <div className="filler" style={{ width: `${props.percentage}%` }} />
-};
