@@ -5,6 +5,7 @@ import {subscribeToClient, subscribeToPixel} from './api';
 import Progress from "./Progress";
 import Clients from "./Clients";
 import PictureSize from "./PictureSize";
+import Button from "@material-ui/core/Button";
 
 
 class App extends Component {
@@ -80,9 +81,13 @@ class App extends Component {
                                  height={this.state.height}
                                  onHeightChange={this.handleHeightChange}/>
 
-                    <button onClick={this.handleClick} disabled={disableButton}>
+                    <Button variant="contained"
+                            color="primary"
+                            onClick={this.handleClick}
+                            disabled={disableButton}>
                         {buttonText}
-                    </button>
+                    </Button>
+
                     <br/>
                     {inProgress &&
                     <Progress current={this.state.pixelCount}
