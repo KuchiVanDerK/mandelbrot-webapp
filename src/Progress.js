@@ -11,7 +11,7 @@ class Progress extends Component {
         const percentage = (current / max * 100).toFixed(1);
 
         return (
-            <div>
+            <div className="Progress">
                 <ul>
                     <li>{current} / {max} Pixel calculated</li>
                     <li>{percentage}% calculated</li>

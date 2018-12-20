@@ -13,6 +13,23 @@ function toPixel(x, y) {
 
 io.on('connection', (client) => {
 
+
+    client.on('subscribeToClient', async () => {
+
+        console.log('subscribeToClient');
+
+        const c64 = {name: 'C 64', cores: 4, timestamp: new Date().toISOString()};
+        await Promise.all([client.emit('client', c64), timeout(2000)]);
+
+        const casio = {name: 'Casio FX-3650PII', cores: 1, timestamp: new Date().toISOString()};
+        await Promise.all([client.emit('client', casio), timeout(3000)]);
+
+        const summit = {name: 'IBM Summit', cores: 2397824, timestamp: new Date().toISOString()};
+        await Promise.all([client.emit('client', summit), timeout(1000)]);
+
+    });
+
+
     client.on('subscribeToPixel', async (pixel) => {
         console.log('client is subscribing to pixel with ', pixel);
 
