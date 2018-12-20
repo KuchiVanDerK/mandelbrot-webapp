@@ -38,7 +38,7 @@ io.on('connection', (client) => {
         for (let x = 0; x < maxX; x++) {
             for (let y = 0; y < maxY; y++) {
                 const coloredPixel = toPixel(x, y);
-                await Promise.all([client.emit('pixel', coloredPixel), timeout(2)]);
+                await Promise.all([client.emit('pixel', coloredPixel), timeout(5)]);
             }
         }
 
