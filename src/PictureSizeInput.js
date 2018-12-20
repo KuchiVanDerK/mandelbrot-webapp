@@ -1,4 +1,5 @@
 import React from "react";
+import TextField from "@material-ui/core/TextField";
 
 class PictureSizeInput extends React.Component {
     constructor(props) {
@@ -16,10 +17,15 @@ class PictureSizeInput extends React.Component {
         return (
             <div className="container">
                 <form>
-                    <div className= "form-group">
-                        <input className="form-control container text-center" id="focusedInputed" type="text" value={value}
-                               onChange={this.handleChange} />
-                        <lable> {scale}</lable>
+                    <div className="form-group">
+                        <TextField
+                            id="standard-name"
+                            label={scale}
+                            className="picture-size-input"
+                            value={value}
+                            onChange={this.handleChange}
+                            margin="normal"
+                        />
                     </div>
                 </form>
             </div>
