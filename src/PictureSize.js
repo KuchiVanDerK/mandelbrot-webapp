@@ -12,6 +12,7 @@ class PictureSize extends Component {
                 scale="height"
                 value={this.props.height}
                 onChange={this.props.onHeightChange}/>
+            Pixels to calculate: {this.props.width * this.props.height}
         </div>;
     }
 }
