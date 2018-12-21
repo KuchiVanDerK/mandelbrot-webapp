@@ -34,7 +34,7 @@ class Canvas extends Component {
             if (!g) g = 0;
             if (!b) b = 0;
             
-            const ctx = this.refs.canvas.getContext('2d');
+            const ctx = this.refs.canvas.getContext('2d', {alpha: false});
             ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 1)`;
             ctx.fillRect(x, y, 1, 1);
         }
