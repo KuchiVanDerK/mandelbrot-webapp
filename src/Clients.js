@@ -12,7 +12,7 @@ class Clients extends Component {
         const clients = this.props.clients;
 
         const body = clients.map(client => {
-            return <tr>
+            return <tr key={client.name}>
                 <td>{client.name}</td>
                 <td>{client.cores}</td>
                 <td>{toTime(client.timestamp)}</td>
