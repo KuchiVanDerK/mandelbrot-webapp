@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Canvas from "./Canvas";
-import {subscribeToClient, subscribeToPixel} from './api';
+// import {subscribeToClient, subscribeToPixel} from './api';
 import Progress from "./Progress";
 import Clients from "./Clients";
 import PictureSize from "./PictureSize";
@@ -24,15 +24,7 @@ class App extends Component {
         this.handleWidthChange = this.handleWidthChange.bind(this);
         this.handleHeightChange = this.handleHeightChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-
-        subscribeToClient((err, client) => {
-            const clients = this.state.clients.slice().concat([client]);
-            this.setState({clients});
-        });
-
-
     }
-
 
     handleWidthChange(value) {
         this.setState({width: value});
@@ -46,14 +38,6 @@ class App extends Component {
         e.preventDefault();
 
         this.setState({inProgress: true});
-
-        subscribeToPixel((err, pixel) => {
-            return this.setState({
-                pixel,
-                pixelCount: this.state.pixelCount + 1
-            });
-        }, this.state.width, this.state.height);
-
     }
 
     render() {
@@ -61,7 +45,7 @@ class App extends Component {
         const inProgress = this.state.inProgress;
         const notEnoughClients = this.state.clients.length < 2;
 
-        const disableButton = inProgress || notEnoughClients;
+        const disableButton = false;
 
         const buttonText = inProgress ? 'Lasers already running' :
             notEnoughClients ? 'At least two clients required to start Lasers' :
