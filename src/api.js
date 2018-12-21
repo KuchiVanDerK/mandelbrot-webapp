@@ -1,6 +1,6 @@
 import openSocket from 'socket.io-client';
 
-const socket = openSocket('http://localhost:3030');
+const socket = openSocket('http://localhost:8000', {path: '/results'});
 
 
 function subscribeToClient(cb) {

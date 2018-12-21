@@ -1,4 +1,7 @@
-const io = require('socket.io')();
+const server = require('http').createServer();
+const io = require('socket.io')(server, {
+    path: '/results'
+  });
 
 function toPixel(x, y) {
 
@@ -50,6 +53,6 @@ function timeout(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const port = 3030;
-io.listen(port);
+const port = 8000;
+server.listen(port);
 console.log('listening on port ', port);
