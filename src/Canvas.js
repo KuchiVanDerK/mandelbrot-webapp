@@ -5,39 +5,51 @@ class Canvas extends Component {
     
     constructor() {
         super()
-        this.state = {
-            pixel: {}
-        }
+        this.pixelCount = 0
     }
 
     componentDidMount() {
         this.connection = new WebSocket('ws://localhost:8000/results/');
 
         this.connection.onmessage = event => {
-            const pixel = JSON.parse(event.data)
-            this.setState({pixel})
+            this.drawPixel(event.data)
         }
+
+        this.ctx = this.refs.canvas.getContext('2d', {alpha: false});
+        this.imageData = this.ctx.getImageData(0, 0, this.props.width, this.props.height)
     }
 
     componentWillUnmount() {
         this.connection.close()
     }
 
-    render() {
-        if (this.state.pixel.result) {
-
-            let {x, y, r, g, b} = this.state.pixel.result;
-
-            if (!x) x = 0;
-            if (!y) y = 0;
-            if (!r) r = 0;
-            if (!g) g = 0;
-            if (!b) b = 0;
+    drawPixel(data) {
+        const pixel = JSON.parse(data)
             
-            const ctx = this.refs.canvas.getContext('2d', {alpha: false});
-            ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-            ctx.fillRect(x, y, 1, 1);
+        if (!pixel.result) {
+            return
         }
+        
+        const {
+            index = 0, 
+            r = 0, 
+            g = 0, 
+            b = 0
+        } = pixel.result;
+
+        this.imageData.data[index * 4   ] = r
+        this.imageData.data[index * 4 +1] = g
+        this.imageData.data[index * 4 +2] = b
+
+        this.pixelCount++
+
+        // draw line by line
+        if (this.pixelCount % this.props.width === 0) {
+            this.ctx.putImageData(this.imageData, 0, 0);
+        }
+    }
+
+    render() {
         return (
             <div>
                 <canvas ref="canvas"
