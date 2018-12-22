@@ -4,13 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from "@material-ui/core/Badge";
 import ComputerIcon from '@material-ui/icons/Computer';
 import Drawer from "@material-ui/core/Drawer";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import List from "@material-ui/core/List";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import green from "@material-ui/core/colors/green";
+import FolderList from "./FolderList";
 
 
 const styles = theme => ({
@@ -23,48 +17,27 @@ const styles = theme => ({
     menuButton: {
         marginLeft: -12,
         marginRight: 20,
-    },
-    // drawer: {
-    //     backgroundColor: green[300],
-    //     paddingTop: theme.spacing.unit * 20
-    // }
+    }
 });
 
 
 class ClientBar extends React.Component {
 
-
     constructor(props) {
         super(props);
-
-        this.state = {showClientList: true}; // TODO false true for testing
+        this.state = {showClientList: false};
     }
 
     openDrawer = () => {
         this.setState({showClientList: true});
     };
 
-
     closeDrawer = () => {
         this.setState({showClientList: false});
     };
 
-
     render() {
         const {classes} = this.props;
-
-        const sideList = (
-            <div className={classes.list}>
-                <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                            <ListItemText primary={text}/>
-                        </ListItem>
-                    ))}
-                </List>
-            </div>
-        );
 
         return (
 
@@ -87,7 +60,8 @@ class ClientBar extends React.Component {
                         onClick={this.closeDrawer}
                         onKeyDown={this.closeDrawer}
                     >
-                        {sideList}
+                        <FolderList/>
+
                     </div>
                 </Drawer>
 

@@ -37,7 +37,6 @@ class Index extends React.Component {
 
     render() {
         const {classes} = this.props;
-        console.log(JSON.stringify(this.props));
         const {open} = this.state;
 
         return (
