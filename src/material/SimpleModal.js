@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -24,20 +24,22 @@ class SimpleModal extends React.Component {
     };
 
     handleOpen = () => {
-        this.setState({ open: true });
+        this.setState({open: true});
     };
 
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({open: false});
     };
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <div>
 
-                <Button color="inherit" onClick={this.handleOpen}>Start</Button>
+                <Button color="secondary"
+                        variant="contained"
+                        onClick={this.handleOpen}>Start</Button>
 
                 <Modal
                     aria-labelledby="simple-modal-title"
