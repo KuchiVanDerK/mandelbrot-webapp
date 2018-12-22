@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from "@material-ui/core/Badge";
 import ComputerIcon from '@material-ui/icons/Computer';
+import ClientBar from "./ClientBar";
 
 const styles = {
     root: {
@@ -22,7 +23,7 @@ const styles = {
 };
 
 function ButtonAppBar(props) {
-    const { classes } = props;
+    const {classes} = props;
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -30,19 +31,13 @@ function ButtonAppBar(props) {
 
                     <Button color="inherit">Start</Button>
 
-
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                        Test
-                    </IconButton>
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                         Awesome Mandelbrot Webapp
                     </Typography>
 
-                    <IconButton color="inherit">
-                        <Badge badgeContent={17} color="secondary">
-                            <ComputerIcon />
-                        </Badge>
-                    </IconButton>
+
+                    <ClientBar/>
+
 
                 </Toolbar>
             </AppBar>
