@@ -10,9 +10,10 @@ import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import green from "@material-ui/core/colors/green";
 
 
-const styles = {
+const styles = theme => ({
     root: {
         flexGrow: 1,
     },
@@ -23,7 +24,11 @@ const styles = {
         marginLeft: -12,
         marginRight: 20,
     },
-};
+    // drawer: {
+    //     backgroundColor: green[300],
+    //     paddingTop: theme.spacing.unit * 20
+    // }
+});
 
 
 class ClientBar extends React.Component {
@@ -32,22 +37,16 @@ class ClientBar extends React.Component {
     constructor(props) {
         super(props);
 
-
-        this.state = {showClientList: false};
-
+        this.state = {showClientList: true}; // TODO false true for testing
     }
 
     openDrawer = () => {
-        this.setState({
-            showClientList: true,
-        });
+        this.setState({showClientList: true});
     };
 
 
     closeDrawer = () => {
-        this.setState({
-            showClientList: false,
-        });
+        this.setState({showClientList: false});
     };
 
 
@@ -70,25 +69,27 @@ class ClientBar extends React.Component {
         return (
 
             <div>
-
-                <IconButton color="inherit" onClick={this.openDrawer}>
+                <IconButton color="inherit"
+                            onClick={this.openDrawer}
+                            onMouseEnter={this.openDrawer}>
                     <Badge badgeContent={17} color="secondary">
                         <ComputerIcon/>
                     </Badge>
                 </IconButton>
 
-                <div>
-                    <Drawer anchor="right" open={this.state.showClientList} onClose={this.closeDrawer}>
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            onClick={this.closeDrawer}
-                            onKeyDown={this.closeDrawer}
-                        >
-                            {sideList}
-                        </div>
-                    </Drawer>
-                </div>
+                <Drawer className={classes.drawer}
+                        anchor="right"
+                        open={this.state.showClientList}
+                        onClose={this.closeDrawer}>
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.closeDrawer}
+                        onKeyDown={this.closeDrawer}
+                    >
+                        {sideList}
+                    </div>
+                </Drawer>
 
             </div>
         );
